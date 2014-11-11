@@ -1,0 +1,23 @@
+Package: ggstat
+Title: Statistical Computations for Visualisation
+Description: A variety of high-performance calculations useful for
+    visualisation
+Version: 0.1
+Author: RStudio, Inc.
+Maintainer: Hadley Wickham <hadley@rstudio.com>
+Depends:
+    R (>= 3.0)
+License: GPL-2
+LazyData: true
+LinkingTo: Rcpp,
+    BH
+Imports:
+    Rcpp,
+    magrittr
+Suggests:
+    testthat,
+    lubridate,
+    dplyr,
+    knitr,
+    microbenchmark
+VignetteBuilder: knitr

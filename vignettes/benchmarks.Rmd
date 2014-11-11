@@ -1,0 +1,63 @@
+---
+title: "Benchmarks"
+author: "Hadley Wickham"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\usepackage[utf8]{inputenc}
+---
+
+```{r}
+library(microbenchmark)
+library(ggstat)
+options(digits = 3)
+knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
+```
+
+# Counting
+
+For logicals, about 50x faster than `table()`, and twice as fast as `tabulate()` (but tabulate doesn't count missings)
+
+```{r}
+x <- sample(c(T, F, NA), 1e4, rep = T)
+microbenchmark(
+  compute_count_vec(x),
+  tabulate(as.numeric(x) + 1, 2),
+  table(x)
+)
+```
+
+A little slower than tabulate for factors, probably because of the extra work to deal with the two types of missing values in factors.
+
+```{r}
+y  <- sample(factor(c(NA, letters)), 1e4, rep = T)
+microbenchmark(
+  compute_count_vec(y),
+  tabulate(y, length(levels(y))),
+  table(y)
+)
+
+```
+
+About 50x faster than table when counting floats:
+
+```{r}
+z <- sample(runif(100), 1e4, rep = T)
+microbenchmark(
+  compute_count_vec(z),
+  table(z)
+)
+
+```
+
+About 3x for strings:
+
+```{r}
+a <- sample(replicate(100, paste(sample(letters), collapse = "")), 1e4, rep = T)
+microbenchmark(
+  compute_count_vec(a),
+  table(a)
+)
+```
