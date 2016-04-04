@@ -22,6 +22,7 @@ Suggests:
     lubridate,
     dplyr,
     knitr,
+    rmarkdown,
     microbenchmark
 VignetteBuilder: knitr
 RoxygenNote: 5.0.1
