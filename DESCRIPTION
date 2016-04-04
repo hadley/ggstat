@@ -25,3 +25,5 @@ Suggests:
     microbenchmark
 VignetteBuilder: knitr
 RoxygenNote: 5.0.1
+URL: https://github.com/rstudio/ggstat
+BugReports: https://github.com/rstudio/ggstat/issues
