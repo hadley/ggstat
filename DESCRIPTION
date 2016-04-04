@@ -27,5 +27,5 @@ Suggests:
     covr
 VignetteBuilder: knitr
 RoxygenNote: 5.0.1
-URL: https://github.com/rstudio/ggstat
-BugReports: https://github.com/rstudio/ggstat/issues
+URL: https://github.com/hadley/ggstat
+BugReports: https://github.com/hadley/ggstat/issues
