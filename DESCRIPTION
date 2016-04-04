@@ -21,3 +21,4 @@ Suggests:
     knitr,
     microbenchmark
 VignetteBuilder: knitr
+RoxygenNote: 5.0.1

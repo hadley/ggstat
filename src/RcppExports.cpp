@@ -12,19 +12,15 @@ using namespace Rcpp;
 List condense_count(const NumericVector& x, double origin, double width, bool pad, bool right_closed, const NumericVector& w);
 static SEXP ggstat_condense_count_try(SEXP xSEXP, SEXP originSEXP, SEXP widthSEXP, SEXP padSEXP, SEXP right_closedSEXP, SEXP wSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::traits::input_parameter< const NumericVector& >::type x(xSEXP );
-        Rcpp::traits::input_parameter< double >::type origin(originSEXP );
-        Rcpp::traits::input_parameter< double >::type width(widthSEXP );
-        Rcpp::traits::input_parameter< bool >::type pad(padSEXP );
-        Rcpp::traits::input_parameter< bool >::type right_closed(right_closedSEXP );
-        Rcpp::traits::input_parameter< const NumericVector& >::type w(wSEXP );
-        List __result = condense_count(x, origin, width, pad, right_closed, w);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::traits::input_parameter< const NumericVector& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< double >::type origin(originSEXP);
+    Rcpp::traits::input_parameter< double >::type width(widthSEXP);
+    Rcpp::traits::input_parameter< bool >::type pad(padSEXP);
+    Rcpp::traits::input_parameter< bool >::type right_closed(right_closedSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type w(wSEXP);
+    __result = Rcpp::wrap(condense_count(x, origin, width, pad, right_closed, w));
+    return __result;
 END_RCPP_RETURN_ERROR
 }
 RcppExport SEXP ggstat_condense_count(SEXP xSEXP, SEXP originSEXP, SEXP widthSEXP, SEXP padSEXP, SEXP right_closedSEXP, SEXP wSEXP) {
@@ -51,20 +47,16 @@ RcppExport SEXP ggstat_condense_count(SEXP xSEXP, SEXP originSEXP, SEXP widthSEX
 List condense_sum(const NumericVector& x, double origin, double width, bool pad, bool right_closed, const NumericVector& z, const NumericVector& w);
 static SEXP ggstat_condense_sum_try(SEXP xSEXP, SEXP originSEXP, SEXP widthSEXP, SEXP padSEXP, SEXP right_closedSEXP, SEXP zSEXP, SEXP wSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::traits::input_parameter< const NumericVector& >::type x(xSEXP );
-        Rcpp::traits::input_parameter< double >::type origin(originSEXP );
-        Rcpp::traits::input_parameter< double >::type width(widthSEXP );
-        Rcpp::traits::input_parameter< bool >::type pad(padSEXP );
-        Rcpp::traits::input_parameter< bool >::type right_closed(right_closedSEXP );
-        Rcpp::traits::input_parameter< const NumericVector& >::type z(zSEXP );
-        Rcpp::traits::input_parameter< const NumericVector& >::type w(wSEXP );
-        List __result = condense_sum(x, origin, width, pad, right_closed, z, w);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::traits::input_parameter< const NumericVector& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< double >::type origin(originSEXP);
+    Rcpp::traits::input_parameter< double >::type width(widthSEXP);
+    Rcpp::traits::input_parameter< bool >::type pad(padSEXP);
+    Rcpp::traits::input_parameter< bool >::type right_closed(right_closedSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type z(zSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type w(wSEXP);
+    __result = Rcpp::wrap(condense_sum(x, origin, width, pad, right_closed, z, w));
+    return __result;
 END_RCPP_RETURN_ERROR
 }
 RcppExport SEXP ggstat_condense_sum(SEXP xSEXP, SEXP originSEXP, SEXP widthSEXP, SEXP padSEXP, SEXP right_closedSEXP, SEXP zSEXP, SEXP wSEXP) {
@@ -91,21 +83,17 @@ RcppExport SEXP ggstat_condense_sum(SEXP xSEXP, SEXP originSEXP, SEXP widthSEXP,
 List condense_moments(const NumericVector& x, double origin, double width, bool pad, bool right_closed, const NumericVector& z, const NumericVector& w, int moments);
 static SEXP ggstat_condense_moments_try(SEXP xSEXP, SEXP originSEXP, SEXP widthSEXP, SEXP padSEXP, SEXP right_closedSEXP, SEXP zSEXP, SEXP wSEXP, SEXP momentsSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::traits::input_parameter< const NumericVector& >::type x(xSEXP );
-        Rcpp::traits::input_parameter< double >::type origin(originSEXP );
-        Rcpp::traits::input_parameter< double >::type width(widthSEXP );
-        Rcpp::traits::input_parameter< bool >::type pad(padSEXP );
-        Rcpp::traits::input_parameter< bool >::type right_closed(right_closedSEXP );
-        Rcpp::traits::input_parameter< const NumericVector& >::type z(zSEXP );
-        Rcpp::traits::input_parameter< const NumericVector& >::type w(wSEXP );
-        Rcpp::traits::input_parameter< int >::type moments(momentsSEXP );
-        List __result = condense_moments(x, origin, width, pad, right_closed, z, w, moments);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::traits::input_parameter< const NumericVector& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< double >::type origin(originSEXP);
+    Rcpp::traits::input_parameter< double >::type width(widthSEXP);
+    Rcpp::traits::input_parameter< bool >::type pad(padSEXP);
+    Rcpp::traits::input_parameter< bool >::type right_closed(right_closedSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type z(zSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type w(wSEXP);
+    Rcpp::traits::input_parameter< int >::type moments(momentsSEXP);
+    __result = Rcpp::wrap(condense_moments(x, origin, width, pad, right_closed, z, w, moments));
+    return __result;
 END_RCPP_RETURN_ERROR
 }
 RcppExport SEXP ggstat_condense_moments(SEXP xSEXP, SEXP originSEXP, SEXP widthSEXP, SEXP padSEXP, SEXP right_closedSEXP, SEXP zSEXP, SEXP wSEXP, SEXP momentsSEXP) {
@@ -132,20 +120,16 @@ RcppExport SEXP ggstat_condense_moments(SEXP xSEXP, SEXP originSEXP, SEXP widthS
 List condense_median(const NumericVector& x, double origin, double width, bool pad, bool right_closed, const NumericVector& z, const NumericVector& w);
 static SEXP ggstat_condense_median_try(SEXP xSEXP, SEXP originSEXP, SEXP widthSEXP, SEXP padSEXP, SEXP right_closedSEXP, SEXP zSEXP, SEXP wSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::traits::input_parameter< const NumericVector& >::type x(xSEXP );
-        Rcpp::traits::input_parameter< double >::type origin(originSEXP );
-        Rcpp::traits::input_parameter< double >::type width(widthSEXP );
-        Rcpp::traits::input_parameter< bool >::type pad(padSEXP );
-        Rcpp::traits::input_parameter< bool >::type right_closed(right_closedSEXP );
-        Rcpp::traits::input_parameter< const NumericVector& >::type z(zSEXP );
-        Rcpp::traits::input_parameter< const NumericVector& >::type w(wSEXP );
-        List __result = condense_median(x, origin, width, pad, right_closed, z, w);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::traits::input_parameter< const NumericVector& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< double >::type origin(originSEXP);
+    Rcpp::traits::input_parameter< double >::type width(widthSEXP);
+    Rcpp::traits::input_parameter< bool >::type pad(padSEXP);
+    Rcpp::traits::input_parameter< bool >::type right_closed(right_closedSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type z(zSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type w(wSEXP);
+    __result = Rcpp::wrap(condense_median(x, origin, width, pad, right_closed, z, w));
+    return __result;
 END_RCPP_RETURN_ERROR
 }
 RcppExport SEXP ggstat_condense_median(SEXP xSEXP, SEXP originSEXP, SEXP widthSEXP, SEXP padSEXP, SEXP right_closedSEXP, SEXP zSEXP, SEXP wSEXP) {
@@ -172,148 +156,112 @@ RcppExport SEXP ggstat_condense_median(SEXP xSEXP, SEXP originSEXP, SEXP widthSE
 List count_lgl(LogicalVector x, NumericVector w);
 RcppExport SEXP ggstat_count_lgl(SEXP xSEXP, SEXP wSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< LogicalVector >::type x(xSEXP );
-        Rcpp::traits::input_parameter< NumericVector >::type w(wSEXP );
-        List __result = count_lgl(x, w);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< LogicalVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type w(wSEXP);
+    __result = Rcpp::wrap(count_lgl(x, w));
+    return __result;
 END_RCPP
 }
 // count_factor
 List count_factor(IntegerVector x, NumericVector w);
 RcppExport SEXP ggstat_count_factor(SEXP xSEXP, SEXP wSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< IntegerVector >::type x(xSEXP );
-        Rcpp::traits::input_parameter< NumericVector >::type w(wSEXP );
-        List __result = count_factor(x, w);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< IntegerVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type w(wSEXP);
+    __result = Rcpp::wrap(count_factor(x, w));
+    return __result;
 END_RCPP
 }
 // count_numeric
 List count_numeric(NumericVector x, NumericVector w);
 RcppExport SEXP ggstat_count_numeric(SEXP xSEXP, SEXP wSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP );
-        Rcpp::traits::input_parameter< NumericVector >::type w(wSEXP );
-        List __result = count_numeric(x, w);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type w(wSEXP);
+    __result = Rcpp::wrap(count_numeric(x, w));
+    return __result;
 END_RCPP
 }
 // count_string
 List count_string(CharacterVector x, NumericVector w);
 RcppExport SEXP ggstat_count_string(SEXP xSEXP, SEXP wSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< CharacterVector >::type x(xSEXP );
-        Rcpp::traits::input_parameter< NumericVector >::type w(wSEXP );
-        List __result = count_string(x, w);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< CharacterVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type w(wSEXP);
+    __result = Rcpp::wrap(count_string(x, w));
+    return __result;
 END_RCPP
 }
 // density
-List density(NumericVector x, NumericVector w, double bw, double width, double from, double to, bool reflect = false);
+List density(NumericVector x, NumericVector w, double bw, double width, double from, double to, bool reflect);
 RcppExport SEXP ggstat_density(SEXP xSEXP, SEXP wSEXP, SEXP bwSEXP, SEXP widthSEXP, SEXP fromSEXP, SEXP toSEXP, SEXP reflectSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP );
-        Rcpp::traits::input_parameter< NumericVector >::type w(wSEXP );
-        Rcpp::traits::input_parameter< double >::type bw(bwSEXP );
-        Rcpp::traits::input_parameter< double >::type width(widthSEXP );
-        Rcpp::traits::input_parameter< double >::type from(fromSEXP );
-        Rcpp::traits::input_parameter< double >::type to(toSEXP );
-        Rcpp::traits::input_parameter< bool >::type reflect(reflectSEXP );
-        List __result = density(x, w, bw, width, from, to, reflect);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type w(wSEXP);
+    Rcpp::traits::input_parameter< double >::type bw(bwSEXP);
+    Rcpp::traits::input_parameter< double >::type width(widthSEXP);
+    Rcpp::traits::input_parameter< double >::type from(fromSEXP);
+    Rcpp::traits::input_parameter< double >::type to(toSEXP);
+    Rcpp::traits::input_parameter< bool >::type reflect(reflectSEXP);
+    __result = Rcpp::wrap(density(x, w, bw, width, from, to, reflect));
+    return __result;
 END_RCPP
 }
 // frange_
-NumericVector frange_(const NumericVector& x, const bool finite = true);
+NumericVector frange_(const NumericVector& x, const bool finite);
 RcppExport SEXP ggstat_frange_(SEXP xSEXP, SEXP finiteSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< const NumericVector& >::type x(xSEXP );
-        Rcpp::traits::input_parameter< const bool >::type finite(finiteSEXP );
-        NumericVector __result = frange_(x, finite);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< const NumericVector& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const bool >::type finite(finiteSEXP);
+    __result = Rcpp::wrap(frange_(x, finite));
+    return __result;
 END_RCPP
 }
 // frange_list
-NumericVector frange_list(const ListOf<NumericVector>& x, const bool finite = true);
+NumericVector frange_list(const ListOf<NumericVector>& x, const bool finite);
 RcppExport SEXP ggstat_frange_list(SEXP xSEXP, SEXP finiteSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< const ListOf<NumericVector>& >::type x(xSEXP );
-        Rcpp::traits::input_parameter< const bool >::type finite(finiteSEXP );
-        NumericVector __result = frange_list(x, finite);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< const ListOf<NumericVector>& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const bool >::type finite(finiteSEXP);
+    __result = Rcpp::wrap(frange_list(x, finite));
+    return __result;
 END_RCPP
 }
 // abs_max_
-double abs_max_(const NumericVector& x, const bool finite = true);
+double abs_max_(const NumericVector& x, const bool finite);
 RcppExport SEXP ggstat_abs_max_(SEXP xSEXP, SEXP finiteSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< const NumericVector& >::type x(xSEXP );
-        Rcpp::traits::input_parameter< const bool >::type finite(finiteSEXP );
-        double __result = abs_max_(x, finite);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< const NumericVector& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const bool >::type finite(finiteSEXP);
+    __result = Rcpp::wrap(abs_max_(x, finite));
+    return __result;
 END_RCPP
 }
 // mt
-NumericVector mt(NumericVector x, double lambda = 0);
+NumericVector mt(NumericVector x, double lambda);
 static SEXP ggstat_mt_try(SEXP xSEXP, SEXP lambdaSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP );
-        Rcpp::traits::input_parameter< double >::type lambda(lambdaSEXP );
-        NumericVector __result = mt(x, lambda);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< double >::type lambda(lambdaSEXP);
+    __result = Rcpp::wrap(mt(x, lambda));
+    return __result;
 END_RCPP_RETURN_ERROR
 }
 RcppExport SEXP ggstat_mt(SEXP xSEXP, SEXP lambdaSEXP) {
@@ -337,18 +285,14 @@ RcppExport SEXP ggstat_mt(SEXP xSEXP, SEXP lambdaSEXP) {
     return __result;
 }
 // inv_mt
-NumericVector inv_mt(NumericVector x, double lambda = 0);
+NumericVector inv_mt(NumericVector x, double lambda);
 static SEXP ggstat_inv_mt_try(SEXP xSEXP, SEXP lambdaSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP );
-        Rcpp::traits::input_parameter< double >::type lambda(lambdaSEXP );
-        NumericVector __result = inv_mt(x, lambda);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< double >::type lambda(lambdaSEXP);
+    __result = Rcpp::wrap(inv_mt(x, lambda));
+    return __result;
 END_RCPP_RETURN_ERROR
 }
 RcppExport SEXP ggstat_inv_mt(SEXP xSEXP, SEXP lambdaSEXP) {
@@ -375,18 +319,14 @@ RcppExport SEXP ggstat_inv_mt(SEXP xSEXP, SEXP lambdaSEXP) {
 NumericVector smooth_linear(const NumericVector& x_in, const NumericVector& z_in, const NumericVector& w_in, const NumericVector& x_out, const double h);
 static SEXP ggstat_smooth_linear_try(SEXP x_inSEXP, SEXP z_inSEXP, SEXP w_inSEXP, SEXP x_outSEXP, SEXP hSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::traits::input_parameter< const NumericVector& >::type x_in(x_inSEXP );
-        Rcpp::traits::input_parameter< const NumericVector& >::type z_in(z_inSEXP );
-        Rcpp::traits::input_parameter< const NumericVector& >::type w_in(w_inSEXP );
-        Rcpp::traits::input_parameter< const NumericVector& >::type x_out(x_outSEXP );
-        Rcpp::traits::input_parameter< const double >::type h(hSEXP );
-        NumericVector __result = smooth_linear(x_in, z_in, w_in, x_out, h);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::traits::input_parameter< const NumericVector& >::type x_in(x_inSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type z_in(z_inSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type w_in(w_inSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type x_out(x_outSEXP);
+    Rcpp::traits::input_parameter< const double >::type h(hSEXP);
+    __result = Rcpp::wrap(smooth_linear(x_in, z_in, w_in, x_out, h));
+    return __result;
 END_RCPP_RETURN_ERROR
 }
 RcppExport SEXP ggstat_smooth_linear(SEXP x_inSEXP, SEXP z_inSEXP, SEXP w_inSEXP, SEXP x_outSEXP, SEXP hSEXP) {
@@ -410,22 +350,18 @@ RcppExport SEXP ggstat_smooth_linear(SEXP x_inSEXP, SEXP z_inSEXP, SEXP w_inSEXP
     return __result;
 }
 // smooth_robust
-NumericVector smooth_robust(const NumericVector& x_in, const NumericVector& z_in, const NumericVector& w_in, const NumericVector& x_out, const double h, int iterations = 3);
+NumericVector smooth_robust(const NumericVector& x_in, const NumericVector& z_in, const NumericVector& w_in, const NumericVector& x_out, const double h, int iterations);
 static SEXP ggstat_smooth_robust_try(SEXP x_inSEXP, SEXP z_inSEXP, SEXP w_inSEXP, SEXP x_outSEXP, SEXP hSEXP, SEXP iterationsSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::traits::input_parameter< const NumericVector& >::type x_in(x_inSEXP );
-        Rcpp::traits::input_parameter< const NumericVector& >::type z_in(z_inSEXP );
-        Rcpp::traits::input_parameter< const NumericVector& >::type w_in(w_inSEXP );
-        Rcpp::traits::input_parameter< const NumericVector& >::type x_out(x_outSEXP );
-        Rcpp::traits::input_parameter< const double >::type h(hSEXP );
-        Rcpp::traits::input_parameter< int >::type iterations(iterationsSEXP );
-        NumericVector __result = smooth_robust(x_in, z_in, w_in, x_out, h, iterations);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::traits::input_parameter< const NumericVector& >::type x_in(x_inSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type z_in(z_inSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type w_in(w_inSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type x_out(x_outSEXP);
+    Rcpp::traits::input_parameter< const double >::type h(hSEXP);
+    Rcpp::traits::input_parameter< int >::type iterations(iterationsSEXP);
+    __result = Rcpp::wrap(smooth_robust(x_in, z_in, w_in, x_out, h, iterations));
+    return __result;
 END_RCPP_RETURN_ERROR
 }
 RcppExport SEXP ggstat_smooth_robust(SEXP x_inSEXP, SEXP z_inSEXP, SEXP w_inSEXP, SEXP x_outSEXP, SEXP hSEXP, SEXP iterationsSEXP) {
@@ -452,18 +388,14 @@ RcppExport SEXP ggstat_smooth_robust(SEXP x_inSEXP, SEXP z_inSEXP, SEXP w_inSEXP
 NumericVector smooth_mean(const NumericVector& x_in, const NumericVector& z_in, const NumericVector& w_in, const NumericVector& x_out, const double h);
 static SEXP ggstat_smooth_mean_try(SEXP x_inSEXP, SEXP z_inSEXP, SEXP w_inSEXP, SEXP x_outSEXP, SEXP hSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::traits::input_parameter< const NumericVector& >::type x_in(x_inSEXP );
-        Rcpp::traits::input_parameter< const NumericVector& >::type z_in(z_inSEXP );
-        Rcpp::traits::input_parameter< const NumericVector& >::type w_in(w_inSEXP );
-        Rcpp::traits::input_parameter< const NumericVector& >::type x_out(x_outSEXP );
-        Rcpp::traits::input_parameter< const double >::type h(hSEXP );
-        NumericVector __result = smooth_mean(x_in, z_in, w_in, x_out, h);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::traits::input_parameter< const NumericVector& >::type x_in(x_inSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type z_in(z_inSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type w_in(w_inSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type x_out(x_outSEXP);
+    Rcpp::traits::input_parameter< const double >::type h(hSEXP);
+    __result = Rcpp::wrap(smooth_mean(x_in, z_in, w_in, x_out, h));
+    return __result;
 END_RCPP_RETURN_ERROR
 }
 RcppExport SEXP ggstat_smooth_mean(SEXP x_inSEXP, SEXP z_inSEXP, SEXP w_inSEXP, SEXP x_outSEXP, SEXP hSEXP) {
@@ -490,12 +422,10 @@ RcppExport SEXP ggstat_smooth_mean(SEXP x_inSEXP, SEXP z_inSEXP, SEXP w_inSEXP, 
 void as_data_frame(List x, int nrow);
 RcppExport SEXP ggstat_as_data_frame(SEXP xSEXP, SEXP nrowSEXP) {
 BEGIN_RCPP
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< List >::type x(xSEXP );
-        Rcpp::traits::input_parameter< int >::type nrow(nrowSEXP );
-        as_data_frame(x, nrow);
-    }
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< List >::type x(xSEXP);
+    Rcpp::traits::input_parameter< int >::type nrow(nrowSEXP);
+    as_data_frame(x, nrow);
     return R_NilValue;
 END_RCPP
 }
@@ -503,17 +433,13 @@ END_RCPP
 NumericVector weightedQuantile(NumericVector x, IntegerVector w, NumericVector probs);
 RcppExport SEXP ggstat_weightedQuantile(SEXP xSEXP, SEXP wSEXP, SEXP probsSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP );
-        Rcpp::traits::input_parameter< IntegerVector >::type w(wSEXP );
-        Rcpp::traits::input_parameter< NumericVector >::type probs(probsSEXP );
-        NumericVector __result = weightedQuantile(x, w, probs);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< IntegerVector >::type w(wSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type probs(probsSEXP);
+    __result = Rcpp::wrap(weightedQuantile(x, w, probs));
+    return __result;
 END_RCPP
 }
 
