@@ -15,12 +15,10 @@ LinkingTo:
     Rcpp,
     BH
 Imports:
-    Rcpp,
-    magrittr
+    Rcpp
 Suggests:
     testthat,
     lubridate,
-    dplyr,
     knitr,
     rmarkdown,
     microbenchmark,
