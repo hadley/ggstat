@@ -35,8 +35,7 @@ compute_smooth_vec <- function(x, z, span = 0.25, n_bin = 1000, n_smooth = 100,
   }
 
   binned <- condense_moments(x, origin = range[1] - 1e-8 * width, width = width,
-    pad = FALSE, right_closed = TRUE, z = z, w = weight, moments = 2)
-  `as.data.frame!`(binned, length(binned[[1]]))
+    pad = FALSE, right_closed = TRUE, z = z, w = weight)
 
   # Smooth, weighted by standard error of means
   se <- binned$sd_ / sqrt(binned$count_)
@@ -44,7 +43,7 @@ compute_smooth_vec <- function(x, z, span = 0.25, n_bin = 1000, n_smooth = 100,
   h <- (range[2] - range[1]) * span
 
   x_out <- seq(range[1], range[2], length = n_smooth)
-  out <- smooth_robust(binned$x_, binned$mean_, w_in = 1 / se, x_out,
+  out <- smooth_robust((binned$xmin_ + binned$xmax_) / 2, binned$mean_, w_in = 1 / se, x_out,
     h = h)
 
   data.frame(

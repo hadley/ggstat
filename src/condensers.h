@@ -1,142 +1,131 @@
 #include <Rcpp.h>
 #include "median.h"
 
-class MomentCondenser {
-    int i_;
-    double weight;
-    double mean;
-    double m2;
+class CondenseMoments {
+    int n_;
+    std::vector<double> weight_, mean_, m2_;
 
   public:
-    MomentCondenser (int i) : i_(i), weight(0), mean(0), m2(0) {
-      if (i > 2) Rcpp::stop("Invalid moment");
+    void init(int n) {
+      n_ = n;
+      weight_.resize(n);
+      mean_.resize(n);
+      m2_.resize(n);
     }
 
     // Algorithm adapted from
     // http://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Weighted_incremental_algorithm
-    void push(double y, double w) {
+    void push(int i, double y, double w) {
       if (Rcpp::NumericVector::is_na(y)) return;
 
       // counts and weights
-      weight += w;
+      weight_[i] += w;
 
       // mean
-      if (i_ < 1) return;
-      double delta = y - mean;
-      mean += delta * w / weight;
+      double delta = y - mean_[i];
+      mean_[i] += delta * w / weight_[i];
 
       // variance
-      if (i_ < 2) return;
-      m2 += delta * delta * w * (1 - w / weight);
+      m2_[i] += delta * delta * w * (1 - w / weight_[i]);
 
       return;
     }
 
-    bool empty() const {
-      return weight == 0;
-    }
+    Rcpp::List outColumns() {
+      Rcpp::NumericVector mean(n_), sd(n_);
 
-    int size() const {
-      return i_ + 1;
-    }
-
-    double compute(int i) const {
-      switch (i) {
-        case 0: return weight;
-        case 1: return (weight == 0) ? NAN : mean;
-        case 2: return (weight == 0) ? NAN : pow(m2 / (weight - 1), 0.5);
-        default:
-          Rcpp::stop("Invalid output requested");
-          return NAN;
+      for (int i = 0; i < n_; ++i) {
+        if (weight_[i] == 0) {
+          mean[i] = NAN;
+          sd[i] = NAN;
+        } else {
+          mean[i] = mean_[i];
+          sd[i] = std::pow(m2_[i] / (weight_[i] - 1), 0.5);
+        }
       }
-    }
 
-    std::string name(int i) const {
-      switch (i) {
-        case 0: return "count_";
-        case 1: return "mean_";
-        case 2: return "sd_";
-        default:
-          Rcpp::stop("Invalid output requested");
-          return "";
-      }
+      return Rcpp::List::create(
+        Rcpp::_["count_"] = weight_,
+        Rcpp::_["mean_"] = mean,
+        Rcpp::_["sd_"] = sd
+      );
     }
 };
 
-class SumCondenser {
-    int i_;
-    int weight;
-    double sum;
+class CondenseSum {
+    int n_;
+    std::vector<double> weight, sum;
 
   public:
-    SumCondenser (int i) : i_(i), weight(0), sum(0) {
-      if (i > 1 || i < 0) Rcpp::stop("Invalid moment");
+    void init(int n) {
+      n_ = n;
+      weight.resize(n_);
+      sum.resize(n_);
     }
 
-    void push(double y, double w) {
+    void push(int i, double y, double w) {
       if (Rcpp::NumericVector::is_na(y)) return;
 
-      weight += w;
-      if (i_ < 1) return;
-
-      sum += y * w;
+      weight[i] += w;
+      sum[i] += y * w;
     }
 
-    bool empty() const {
-      return weight == 0;
+    Rcpp::List outColumns() const {
+      return Rcpp::List::create(
+        Rcpp::_["count_"] = weight,
+        Rcpp::_["sum_"] = sum
+      );
     }
-
-    int size() const {
-      return i_ + 1;
-    }
-
-    double compute(int i) const  {
-      switch (i) {
-        case 0: return weight;
-        case 1: return sum;
-        default:
-          Rcpp::stop("Invalid output requested");
-          return NAN;
-      }
-    }
-
-    std::string name(int i) const {
-      switch (i) {
-        case 0: return "count_";
-        case 1: return "sum_";
-        default:
-          Rcpp::stop("Invalid output requested");
-          return "";
-      }
-    }
-
 };
 
-class MedianCondenser {
+class CondenseCount {
+    int n_;
+    std::vector<double> weight;
+
+  public:
+    void init(int n) {
+      n_ = n;
+      weight.resize(n_);
+    }
+
+    void push(int i, double y, double w) {
+      if (Rcpp::NumericVector::is_na(y)) return;
+
+      weight[i] += w;
+    }
+
+    Rcpp::List outColumns() const {
+      return Rcpp::List::create(
+        Rcpp::_["count_"] = weight
+      );
+    }
+};
+
+
+class CondenseMedian {
   // Needs to be mutable because median modifies in place for performance
   // But external interface is still immutable
-  mutable std::vector<double> ys;
+  int n_;
+  mutable std::vector<std::vector<double> > ys;
 
   public:
-    void push(double y, double w) {
+    void init(int n) {
+      n_ = n;
+      ys.resize(n_);
+    }
+
+    void push(int i, double y, double w) {
       if (Rcpp::NumericVector::is_na(y)) return;
 
-      ys.push_back(y);
+      ys[i].push_back(y);
     }
 
-    bool empty() const {
-      return ys.empty();
-    }
+    Rcpp::List outColumns() const {
+      Rcpp::NumericVector out(n_);
+      for (int i = 0; i < n_; ++i) {
+        out[i] = median(&ys[i]);
+      }
 
-    int size() const {
-      return 1;
-    }
-
-    double compute(int i) const {
-      return median(&ys);
-    }
-
-    std::string name(int i) const {
-      return "median_";
+      return Rcpp::List::create(Rcpp::_["median_"] = out);
     }
 };

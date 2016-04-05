@@ -77,11 +77,7 @@ compute_bin_vec <- function(x, w = NULL, width = NULL, origin = NULL,
     pad = pad,
     right_closed = right_closed
   )
-  out$x_ <- restore(x, out$x_)
-  out$xmin_ <- restore(x, out$xmin_)
-  out$xmax_ <- restore(x, out$xmax_)
 
-  `as.data.frame!`(out, length(out[[1]]))
   out
 }
 

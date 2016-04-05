@@ -9,8 +9,8 @@ condense_sum <- function(x, origin, width, pad, right_closed, z, w) {
     .Call('ggstat_condense_sum', PACKAGE = 'ggstat', x, origin, width, pad, right_closed, z, w)
 }
 
-condense_moments <- function(x, origin, width, pad, right_closed, z, w, moments) {
-    .Call('ggstat_condense_moments', PACKAGE = 'ggstat', x, origin, width, pad, right_closed, z, w, moments)
+condense_moments <- function(x, origin, width, pad, right_closed, z, w) {
+    .Call('ggstat_condense_moments', PACKAGE = 'ggstat', x, origin, width, pad, right_closed, z, w)
 }
 
 condense_median <- function(x, origin, width, pad, right_closed, z, w) {

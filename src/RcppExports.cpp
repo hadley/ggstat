@@ -39,8 +39,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // condense_moments
-List condense_moments(const NumericVector& x, double origin, double width, bool pad, bool right_closed, const NumericVector& z, const NumericVector& w, int moments);
-RcppExport SEXP ggstat_condense_moments(SEXP xSEXP, SEXP originSEXP, SEXP widthSEXP, SEXP padSEXP, SEXP right_closedSEXP, SEXP zSEXP, SEXP wSEXP, SEXP momentsSEXP) {
+List condense_moments(const NumericVector& x, double origin, double width, bool pad, bool right_closed, const NumericVector& z, const NumericVector& w);
+RcppExport SEXP ggstat_condense_moments(SEXP xSEXP, SEXP originSEXP, SEXP widthSEXP, SEXP padSEXP, SEXP right_closedSEXP, SEXP zSEXP, SEXP wSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
@@ -51,8 +51,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< bool >::type right_closed(right_closedSEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type z(zSEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type w(wSEXP);
-    Rcpp::traits::input_parameter< int >::type moments(momentsSEXP);
-    __result = Rcpp::wrap(condense_moments(x, origin, width, pad, right_closed, z, w, moments));
+    __result = Rcpp::wrap(condense_moments(x, origin, width, pad, right_closed, z, w));
     return __result;
 END_RCPP
 }

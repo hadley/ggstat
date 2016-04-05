@@ -4,55 +4,85 @@
 using namespace Rcpp;
 
 template<typename Group, typename Condenser>
-List condense(const Group& group,
-              const Condenser& condenser,
+List condense(Group* pGroup,
+              Condenser* pCondenser,
+              const NumericVector& x,
               const NumericVector& z,
               const NumericVector& w) {
+
   bool has_w = (w.size() > 0);
   bool has_z = (z.size() > 0);
 
-  int n_bins = group.nbins();
-  std::vector<Condenser> condensers(n_bins, condenser);
+  pGroup->init(x);
+  pCondenser->init(pGroup->nbins());
 
-  int n_obs = group.size();
+  int n_obs = x.size();
   for(int i = 0; i < n_obs; ++i) {
-    int bin = group.bin_i(i);
-    condensers[bin].push(has_z ? z[i] : 1, has_w ? w[i] : 1);
+    int bin = pGroup->bin(x[i]);
+    pCondenser->push(bin, has_z ? z[i] : 1, has_w ? w[i] : 1);
   }
 
-  return group.output(condenser, condensers);
+  List grpCols = pGroup->outColumns(), outCols = pCondenser->outColumns();
+
+  int p = grpCols.size() + outCols.size();
+  List both(p);
+  CharacterVector
+    grpNames = grpCols.attr("names"),
+    outNames = outCols.attr("names"),
+    bothNames(p);
+
+  for (int i = 0; i < grpCols.size(); ++i) {
+    both[i] = grpCols[i];
+    bothNames[i] = grpNames[i];
+  }
+  for (int i = 0; i < outCols.size(); ++i) {
+    both[i + grpCols.size()] = outCols[i];
+    bothNames[i + grpCols.size()] = outNames[i];
+  }
+
+  both.attr("names") = bothNames;
+  both.attr("class") = CharacterVector::create("tbl_df", "tbl", "data.frame");
+  both.attr("row.names") = IntegerVector::create(NA_INTEGER, -pGroup->nbins());
+
+  return both;
 }
 
 // [[Rcpp::export]]
 List condense_count(const NumericVector& x, double origin, double width,
                     bool pad, bool right_closed,
                     const NumericVector& w) {
-  BinnedVector group(x, width, origin, pad, right_closed);
-  return condense(group, SumCondenser(0), NumericVector::create(), w);
+  BinnedVector group(width, origin, pad, right_closed);
+  CondenseCount cnd;
+
+  return condense(&group, &cnd, x, NumericVector::create(), w);
 }
 
 // [[Rcpp::export]]
 List condense_sum(const NumericVector& x, double origin, double width,
                   bool pad, bool right_closed,
                   const NumericVector& z, const NumericVector& w) {
-  BinnedVector group(x, width, origin, pad, right_closed);
-  return condense(group, SumCondenser(1), z, w);
+  BinnedVector grp(width, origin, pad, right_closed);
+  CondenseSum cnd;
+
+  return condense(&grp, &cnd, x, z, w);
 }
 
 // [[Rcpp::export]]
 List condense_moments(const NumericVector& x, double origin, double width,
                       bool pad, bool right_closed,
-                      const NumericVector& z, const NumericVector& w,
-                      int moments) {
+                      const NumericVector& z, const NumericVector& w) {
+  BinnedVector grp(width, origin, pad, right_closed);
+  CondenseMoments cnd;
 
-  BinnedVector group(x, width, origin, pad, right_closed);
-  return condense(group, MomentCondenser(moments), z, w);
+  return condense(&grp, &cnd, x, z, w);
 }
 
 // [[Rcpp::export]]
 List condense_median(const NumericVector& x, double origin, double width,
                      bool pad, bool right_closed,
                      const NumericVector& z, const NumericVector& w) {
-  BinnedVector group(x, width, origin, pad, right_closed);
-  return condense(group, MedianCondenser(), z, w);
+  BinnedVector grp(width, origin, pad, right_closed);
+  CondenseMedian cnd;
+
+  return condense(&grp, &cnd, x, z, w);
 }
