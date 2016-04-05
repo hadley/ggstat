@@ -1,6 +1,6 @@
 #include <Rcpp.h>
-#include "BinnedVector.h"
-#include "condensers.h"
+#include "Group.h"
+#include "Condense.h"
 using namespace Rcpp;
 
 template<typename Group, typename Condenser>
