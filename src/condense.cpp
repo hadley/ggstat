@@ -62,7 +62,6 @@ List condense(const NumericVector& x, double origin, double width,
   return out;
 }
 
-// [[Rcpp::interfaces(r, cpp)]]
 // [[Rcpp::export]]
 List condense_count(const NumericVector& x, double origin, double width,
                     bool pad, bool right_closed,

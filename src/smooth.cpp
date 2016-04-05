@@ -51,7 +51,6 @@ NumericVector smooth(const NumericVector& x_in,
 }
 
 
-// [[Rcpp::interfaces(r, cpp)]]
 // [[Rcpp::export]]
 NumericVector smooth_linear(const NumericVector& x_in,
                             const NumericVector& z_in,

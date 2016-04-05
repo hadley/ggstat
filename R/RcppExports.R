@@ -102,7 +102,3 @@ weightedQuantile <- function(x, w, probs) {
     .Call('ggstat_weightedQuantile', PACKAGE = 'ggstat', x, w, probs)
 }
 
-# Register entry points for exported C++ functions
-methods::setLoadAction(function(ns) {
-    .Call('ggstat_RcppExport_registerCCallable', PACKAGE = 'ggstat')
-})

@@ -1,6 +1,5 @@
 #include <Rcpp.h>
 using namespace Rcpp;
-// [[Rcpp::interfaces(r, cpp)]]
 
 
 // From http://stackoverflow.com/a/4609795/16632
