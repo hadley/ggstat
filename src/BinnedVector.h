@@ -2,7 +2,7 @@
 
 // Wrapper for numeric vector that makes it easy figure to out which
 // bin each observation belongs to.
-class BinnedVector {
+class GroupFixed {
     double width_;
     double origin_;
     double max_;
@@ -10,8 +10,8 @@ class BinnedVector {
     bool right_closed_;
 
   public:
-    BinnedVector(double width, double origin = 0,
-                 bool pad = false, bool right_closed = true)
+    GroupFixed(double width, double origin = 0,
+               bool pad = false, bool right_closed = true)
        : width_(width), origin_(origin), pad_(pad),
          right_closed_(right_closed) {
 

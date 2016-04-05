@@ -51,7 +51,7 @@ List condense(Group* pGroup,
 List condense_count(const NumericVector& x, double origin, double width,
                     bool pad, bool right_closed,
                     const NumericVector& w) {
-  BinnedVector group(width, origin, pad, right_closed);
+  GroupFixed group(width, origin, pad, right_closed);
   CondenseCount cnd;
 
   return condense(&group, &cnd, x, NumericVector::create(), w);
@@ -61,7 +61,7 @@ List condense_count(const NumericVector& x, double origin, double width,
 List condense_sum(const NumericVector& x, double origin, double width,
                   bool pad, bool right_closed,
                   const NumericVector& z, const NumericVector& w) {
-  BinnedVector grp(width, origin, pad, right_closed);
+  GroupFixed grp(width, origin, pad, right_closed);
   CondenseSum cnd;
 
   return condense(&grp, &cnd, x, z, w);
@@ -71,7 +71,7 @@ List condense_sum(const NumericVector& x, double origin, double width,
 List condense_moments(const NumericVector& x, double origin, double width,
                       bool pad, bool right_closed,
                       const NumericVector& z, const NumericVector& w) {
-  BinnedVector grp(width, origin, pad, right_closed);
+  GroupFixed grp(width, origin, pad, right_closed);
   CondenseMoments cnd;
 
   return condense(&grp, &cnd, x, z, w);
@@ -81,7 +81,7 @@ List condense_moments(const NumericVector& x, double origin, double width,
 List condense_median(const NumericVector& x, double origin, double width,
                      bool pad, bool right_closed,
                      const NumericVector& z, const NumericVector& w) {
-  BinnedVector grp(width, origin, pad, right_closed);
+  GroupFixed grp(width, origin, pad, right_closed);
   CondenseMedian cnd;
 
   return condense(&grp, &cnd, x, z, w);
