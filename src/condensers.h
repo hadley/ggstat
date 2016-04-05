@@ -113,7 +113,9 @@ class SumCondenser {
 };
 
 class MedianCondenser {
-    std::vector<double> ys;
+  // Needs to be mutable because median modifies in place for performance
+  // But external interface is still immutable
+  mutable std::vector<double> ys;
 
   public:
     void push(double y, double w) {
@@ -130,7 +132,7 @@ class MedianCondenser {
       return 1;
     }
 
-    double compute(int i) {
+    double compute(int i) const {
       return median(&ys);
     }
 
