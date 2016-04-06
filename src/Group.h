@@ -1,7 +1,5 @@
 #include <Rcpp.h>
 
-// Wrapper for numeric vector that makes it easy figure to out which
-// bin each observation belongs to.
 class GroupFixed {
     double width_;
     double origin_;
