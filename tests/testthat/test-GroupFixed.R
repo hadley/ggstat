@@ -24,3 +24,31 @@ test_that("respects right_closed", {
   out2 <- group_fixed(c(2, 1), 1, right_closed = FALSE)
   expect_equal(out2$x, c(3, 2))
 })
+
+
+# Floating point ----------------------------------------------------------
+
+test_that("Binning robust to minor FP differences", {
+  # Three vectors with a classical FP issue
+  x1 <- 0:3
+  x2 <- x1 + (1 - 0.9) - 0.1
+  x3 <- x1 - (1 - 0.9) + 0.1
+
+  b1 <- group_fixed(x1, width = 1, origin = 0, right_closed = FALSE)
+  expect_equal(b1$x, 1:4)
+
+  b2 <- group_fixed(x2, width = 1, origin = 0, right_closed = FALSE)
+  expect_equal(b2$x, 1:4)
+
+  b3 <- group_fixed(x3, width = 1, origin = 0, right_closed = FALSE)
+  expect_equal(b3$x, 1:4)
+
+  b4 <- group_fixed(x1, width = 1, origin = -1)
+  expect_equal(b4$x, 2:5)
+
+  b5 <- group_fixed(x2, width = 1, origin = -1)
+  expect_equal(b5$x, 2:5)
+
+  b6 <- group_fixed(x3, width = 1, origin = -1)
+  expect_equal(b6$x, 2:5)
+})
