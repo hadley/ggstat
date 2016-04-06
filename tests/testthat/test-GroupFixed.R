@@ -39,6 +39,11 @@ test_that("respects right_closed", {
   expect_equal(out2$x, c(3, 2))
 })
 
+test_that("pad = TRUE adds empty bin at start and end", {
+  out <- group_fixed(c(0.5, 1.5), 1, pad = TRUE)
+  expect_equal(out$nbins, 2 + 2 + 1)
+  expect_equal(out$bins$xmin_, c(NA, -1, 0, 1, 2))
+})
 
 # Floating point ----------------------------------------------------------
 

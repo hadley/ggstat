@@ -41,12 +41,14 @@ class GroupFixed {
       if (bin < 0)
         return 0;
 
-      return bin + 1;
+      return bin + 1 + (pad_ ? 1 : 0);
     }
 
     int nbins() const {
-      // number of bins is 1 greater than largest bin
-      return bin(max_) + 1;
+      // number of bins is largest bin
+      // + 1 for bin zero
+      // + 1 for empty padding bin on right
+      return bin(max_) + 1 + (pad_ ? 1 : 0);
     }
 
     Rcpp::List outColumns() const {
@@ -57,9 +59,8 @@ class GroupFixed {
       xmax[0] = NA_REAL;
 
       for (int i = 1; i < n; ++i) {
-        double x = unbin(i);
-        xmin[i] = x - width_ / 2;
-        xmax[i] = x + width_ / 2;
+        xmin[i] = left_side(i);
+        xmax[i] = left_side(i + 1);
       }
 
       return Rcpp::List::create(
@@ -69,8 +70,8 @@ class GroupFixed {
     }
 
 private:
-    double unbin(int bin) const {
+    double left_side(int bin) const {
       if (bin < 0) return(NA_REAL);
-      return (bin - 1) * width_ + origin_ + width_ / 2;
+      return (bin - 1 - (pad_ ? 1 : 0)) * width_ + origin_;
     }
 };
