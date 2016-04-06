@@ -23,6 +23,8 @@ Suggests:
     rmarkdown,
     microbenchmark,
     covr
+Remotes:
+    jimhester/covr
 VignetteBuilder: knitr
 RoxygenNote: 5.0.1
 URL: https://github.com/hadley/ggstat
