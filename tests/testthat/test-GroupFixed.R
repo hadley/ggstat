@@ -15,11 +15,6 @@ test_that("values less than origin go in bin 0", {
   expect_equal(out$x, c(0L, 0L))
 })
 
-test_that("values smaller than origin go in bin 0", {
-  out <- group_fixed(c(-1), width = 1)
-  expect_equal(out$x, 0L)
-})
-
 test_that("bin number as expected for middle of bin", {
   # (0, 1], (1, 2], (2, 3]
   out1 <- group_fixed(c(0.5, 1.5, 2.5), 1)

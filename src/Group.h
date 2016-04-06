@@ -73,3 +73,59 @@ private:
       return (bin - 1 - (pad_ ? 1 : 0)) * width_ + origin_;
     }
 };
+
+// -----------------------------------------------------------------------------
+
+class GroupVariable {
+    std::vector<double> breaks_;
+    bool right_closed_;
+
+  public:
+    GroupVariable(std::vector<double> breaks, bool right_closed = true)
+       : breaks_(breaks), right_closed_(right_closed) {
+
+      if (breaks.size() < 1)
+        Rcpp::stop("`breaks` must have at least one element");
+
+      // Ensure breaks are in ascending order
+      std::sort(breaks.begin(), breaks.end());
+    }
+
+    void init(const Rcpp::DoubleVector& x) {
+    }
+
+    int bin(double x) const {
+      if (ISNAN(x))
+        return 0;
+
+      std::vector<double>::const_iterator it = (right_closed_) ?
+        std::lower_bound(breaks_.begin(), breaks_.end(), x) :
+        std::upper_bound(breaks_.begin(), breaks_.end(), x);
+
+      return (it - breaks_.begin()) + 1;
+    }
+
+    int nbins() const {
+      // + 1 for NAs
+      // + 1 more interval than breaks
+      return breaks_.size() + 1 + 1;
+    }
+
+    Rcpp::List outColumns() const {
+      int n = nbins();
+      Rcpp::NumericVector xmin(n), xmax(n);
+
+      xmin[0] = NA_REAL;
+      xmax[0] = NA_REAL;
+
+      for (int i = 1; i < n; ++i) {
+        xmin[i] = i == 1 ?       -INFINITY : breaks_[i - 2];
+        xmax[i] = i == (n - 1) ?  INFINITY : breaks_[i - 1];
+      }
+
+      return Rcpp::List::create(
+        Rcpp::_["xmin_"] = xmin,
+        Rcpp::_["xmax_"] = xmax
+      );
+    }
+};
