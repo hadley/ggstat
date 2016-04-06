@@ -67,12 +67,14 @@ compute_bin_vec <- function(x, w = NULL, width = NULL, origin = NULL,
   }
 
   right_closed <- identical(closed, "right")
-  params <- param_bin(frange(x), width = width, center = center,
+  rng <- frange(x)
+  params <- param_bin(rng, width = width, center = center,
     boundary = boundary, right_closed = right_closed)
 
   out <- condense_count(x,
     w = w,
-    origin = origin %||% params$origin,
+    min = params$origin,
+    max = rng[2],
     width = params$width,
     pad = pad,
     right_closed = right_closed

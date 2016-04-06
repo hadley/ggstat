@@ -4,8 +4,6 @@ using namespace Rcpp;
 
 template<class Group>
 List groupInfo(Group* pGroup, NumericVector x) {
-  pGroup->init(x);
-
   int n = x.size();
   IntegerVector out(n);
 
@@ -21,9 +19,9 @@ List groupInfo(Group* pGroup, NumericVector x) {
 }
 
 // [[Rcpp::export]]
-List group_fixed(NumericVector x, double width, double origin = 0,
+List group_fixed(NumericVector x, double width, double min, double max,
                  bool pad = false, bool right_closed = false) {
-  GroupFixed grp(width, origin, pad, right_closed);
+  GroupFixed grp(width, min, max, pad, right_closed);
   return groupInfo(&grp, x);
 }
 

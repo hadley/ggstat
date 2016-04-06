@@ -6,69 +6,73 @@
 using namespace Rcpp;
 
 // condense_count
-List condense_count(const NumericVector& x, double origin, double width, bool pad, bool right_closed, const NumericVector& w);
-RcppExport SEXP ggstat_condense_count(SEXP xSEXP, SEXP originSEXP, SEXP widthSEXP, SEXP padSEXP, SEXP right_closedSEXP, SEXP wSEXP) {
+List condense_count(const NumericVector& x, double min, double max, double width, bool pad, bool right_closed, const NumericVector& w);
+RcppExport SEXP ggstat_condense_count(SEXP xSEXP, SEXP minSEXP, SEXP maxSEXP, SEXP widthSEXP, SEXP padSEXP, SEXP right_closedSEXP, SEXP wSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
     Rcpp::traits::input_parameter< const NumericVector& >::type x(xSEXP);
-    Rcpp::traits::input_parameter< double >::type origin(originSEXP);
+    Rcpp::traits::input_parameter< double >::type min(minSEXP);
+    Rcpp::traits::input_parameter< double >::type max(maxSEXP);
     Rcpp::traits::input_parameter< double >::type width(widthSEXP);
     Rcpp::traits::input_parameter< bool >::type pad(padSEXP);
     Rcpp::traits::input_parameter< bool >::type right_closed(right_closedSEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type w(wSEXP);
-    __result = Rcpp::wrap(condense_count(x, origin, width, pad, right_closed, w));
+    __result = Rcpp::wrap(condense_count(x, min, max, width, pad, right_closed, w));
     return __result;
 END_RCPP
 }
 // condense_sum
-List condense_sum(const NumericVector& x, double origin, double width, bool pad, bool right_closed, const NumericVector& z, const NumericVector& w);
-RcppExport SEXP ggstat_condense_sum(SEXP xSEXP, SEXP originSEXP, SEXP widthSEXP, SEXP padSEXP, SEXP right_closedSEXP, SEXP zSEXP, SEXP wSEXP) {
+List condense_sum(const NumericVector& x, double min, double max, double width, bool pad, bool right_closed, const NumericVector& z, const NumericVector& w);
+RcppExport SEXP ggstat_condense_sum(SEXP xSEXP, SEXP minSEXP, SEXP maxSEXP, SEXP widthSEXP, SEXP padSEXP, SEXP right_closedSEXP, SEXP zSEXP, SEXP wSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
     Rcpp::traits::input_parameter< const NumericVector& >::type x(xSEXP);
-    Rcpp::traits::input_parameter< double >::type origin(originSEXP);
+    Rcpp::traits::input_parameter< double >::type min(minSEXP);
+    Rcpp::traits::input_parameter< double >::type max(maxSEXP);
     Rcpp::traits::input_parameter< double >::type width(widthSEXP);
     Rcpp::traits::input_parameter< bool >::type pad(padSEXP);
     Rcpp::traits::input_parameter< bool >::type right_closed(right_closedSEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type z(zSEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type w(wSEXP);
-    __result = Rcpp::wrap(condense_sum(x, origin, width, pad, right_closed, z, w));
+    __result = Rcpp::wrap(condense_sum(x, min, max, width, pad, right_closed, z, w));
     return __result;
 END_RCPP
 }
 // condense_moments
-List condense_moments(const NumericVector& x, double origin, double width, bool pad, bool right_closed, const NumericVector& z, const NumericVector& w);
-RcppExport SEXP ggstat_condense_moments(SEXP xSEXP, SEXP originSEXP, SEXP widthSEXP, SEXP padSEXP, SEXP right_closedSEXP, SEXP zSEXP, SEXP wSEXP) {
+List condense_moments(const NumericVector& x, double min, double max, double width, bool pad, bool right_closed, const NumericVector& z, const NumericVector& w);
+RcppExport SEXP ggstat_condense_moments(SEXP xSEXP, SEXP minSEXP, SEXP maxSEXP, SEXP widthSEXP, SEXP padSEXP, SEXP right_closedSEXP, SEXP zSEXP, SEXP wSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
     Rcpp::traits::input_parameter< const NumericVector& >::type x(xSEXP);
-    Rcpp::traits::input_parameter< double >::type origin(originSEXP);
+    Rcpp::traits::input_parameter< double >::type min(minSEXP);
+    Rcpp::traits::input_parameter< double >::type max(maxSEXP);
     Rcpp::traits::input_parameter< double >::type width(widthSEXP);
     Rcpp::traits::input_parameter< bool >::type pad(padSEXP);
     Rcpp::traits::input_parameter< bool >::type right_closed(right_closedSEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type z(zSEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type w(wSEXP);
-    __result = Rcpp::wrap(condense_moments(x, origin, width, pad, right_closed, z, w));
+    __result = Rcpp::wrap(condense_moments(x, min, max, width, pad, right_closed, z, w));
     return __result;
 END_RCPP
 }
 // condense_median
-List condense_median(const NumericVector& x, double origin, double width, bool pad, bool right_closed, const NumericVector& z, const NumericVector& w);
-RcppExport SEXP ggstat_condense_median(SEXP xSEXP, SEXP originSEXP, SEXP widthSEXP, SEXP padSEXP, SEXP right_closedSEXP, SEXP zSEXP, SEXP wSEXP) {
+List condense_median(const NumericVector& x, double min, double max, double width, bool pad, bool right_closed, const NumericVector& z, const NumericVector& w);
+RcppExport SEXP ggstat_condense_median(SEXP xSEXP, SEXP minSEXP, SEXP maxSEXP, SEXP widthSEXP, SEXP padSEXP, SEXP right_closedSEXP, SEXP zSEXP, SEXP wSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
     Rcpp::traits::input_parameter< const NumericVector& >::type x(xSEXP);
-    Rcpp::traits::input_parameter< double >::type origin(originSEXP);
+    Rcpp::traits::input_parameter< double >::type min(minSEXP);
+    Rcpp::traits::input_parameter< double >::type max(maxSEXP);
     Rcpp::traits::input_parameter< double >::type width(widthSEXP);
     Rcpp::traits::input_parameter< bool >::type pad(padSEXP);
     Rcpp::traits::input_parameter< bool >::type right_closed(right_closedSEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type z(zSEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type w(wSEXP);
-    __result = Rcpp::wrap(condense_median(x, origin, width, pad, right_closed, z, w));
+    __result = Rcpp::wrap(condense_median(x, min, max, width, pad, right_closed, z, w));
     return __result;
 END_RCPP
 }
@@ -174,17 +178,18 @@ BEGIN_RCPP
 END_RCPP
 }
 // group_fixed
-List group_fixed(NumericVector x, double width, double origin, bool pad, bool right_closed);
-RcppExport SEXP ggstat_group_fixed(SEXP xSEXP, SEXP widthSEXP, SEXP originSEXP, SEXP padSEXP, SEXP right_closedSEXP) {
+List group_fixed(NumericVector x, double width, double min, double max, bool pad, bool right_closed);
+RcppExport SEXP ggstat_group_fixed(SEXP xSEXP, SEXP widthSEXP, SEXP minSEXP, SEXP maxSEXP, SEXP padSEXP, SEXP right_closedSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
     Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
     Rcpp::traits::input_parameter< double >::type width(widthSEXP);
-    Rcpp::traits::input_parameter< double >::type origin(originSEXP);
+    Rcpp::traits::input_parameter< double >::type min(minSEXP);
+    Rcpp::traits::input_parameter< double >::type max(maxSEXP);
     Rcpp::traits::input_parameter< bool >::type pad(padSEXP);
     Rcpp::traits::input_parameter< bool >::type right_closed(right_closedSEXP);
-    __result = Rcpp::wrap(group_fixed(x, width, origin, pad, right_closed));
+    __result = Rcpp::wrap(group_fixed(x, width, min, max, pad, right_closed));
     return __result;
 END_RCPP
 }

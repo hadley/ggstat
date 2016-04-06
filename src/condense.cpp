@@ -13,7 +13,6 @@ List condense(Group* pGroup,
   bool has_w = (w.size() > 0);
   bool has_z = (z.size() > 0);
 
-  pGroup->init(x);
   pCondenser->init(pGroup->nbins());
 
   int n_obs = x.size();
@@ -48,40 +47,40 @@ List condense(Group* pGroup,
 }
 
 // [[Rcpp::export]]
-List condense_count(const NumericVector& x, double origin, double width,
-                    bool pad, bool right_closed,
+List condense_count(const NumericVector& x, double min, double max,
+                    double width, bool pad, bool right_closed,
                     const NumericVector& w) {
-  GroupFixed group(width, origin, pad, right_closed);
+  GroupFixed grp(width, min, max, pad, right_closed);
   CondenseCount cnd;
 
-  return condense(&group, &cnd, x, NumericVector::create(), w);
+  return condense(&grp, &cnd, x, NumericVector::create(), w);
 }
 
 // [[Rcpp::export]]
-List condense_sum(const NumericVector& x, double origin, double width,
-                  bool pad, bool right_closed,
+List condense_sum(const NumericVector& x, double min, double max,
+                  double width, bool pad, bool right_closed,
                   const NumericVector& z, const NumericVector& w) {
-  GroupFixed grp(width, origin, pad, right_closed);
+  GroupFixed grp(width, min, max, pad, right_closed);
   CondenseSum cnd;
 
   return condense(&grp, &cnd, x, z, w);
 }
 
 // [[Rcpp::export]]
-List condense_moments(const NumericVector& x, double origin, double width,
-                      bool pad, bool right_closed,
+List condense_moments(const NumericVector& x, double min, double max,
+                      double width, bool pad, bool right_closed,
                       const NumericVector& z, const NumericVector& w) {
-  GroupFixed grp(width, origin, pad, right_closed);
+  GroupFixed grp(width, min, max, pad, right_closed);
   CondenseMoments cnd;
 
   return condense(&grp, &cnd, x, z, w);
 }
 
 // [[Rcpp::export]]
-List condense_median(const NumericVector& x, double origin, double width,
-                     bool pad, bool right_closed,
+List condense_median(const NumericVector& x, double min, double max,
+                     double width, bool pad, bool right_closed,
                      const NumericVector& z, const NumericVector& w) {
-  GroupFixed grp(width, origin, pad, right_closed);
+  GroupFixed grp(width, min, max, pad, right_closed);
   CondenseMedian cnd;
 
   return condense(&grp, &cnd, x, z, w);

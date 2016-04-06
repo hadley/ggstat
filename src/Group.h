@@ -2,40 +2,29 @@
 
 class GroupFixed {
     double width_;
-    double origin_;
-    double max_;
+    double min_, max_;
     bool pad_;
     bool right_closed_;
 
   public:
-    GroupFixed(double width, double origin = 0,
+    GroupFixed(double width, double min, double max,
                bool pad = false, bool right_closed = true)
-       : width_(width), origin_(origin), pad_(pad),
+       : width_(width), min_(min), max_(max), pad_(pad),
          right_closed_(right_closed) {
 
       if (width <= 0)
         Rcpp::stop("`width` must be positive");
     }
 
-    void init(const Rcpp::DoubleVector& x) {
-      max_ = -INFINITY;
-      int n = x.size();
-
-      for(int i = 0; i < n; ++i) {
-        if (x[i] == INFINITY) continue;
-        // Normal FP ops ensure that NA and -Inf don't increase max
-        if (x[i] > max_)
-          max_ = x[i];
-      }
-    }
-
     int bin(double x) const {
       if (!R_finite(x))
+        return 0;
+      if (x > max_)
         return 0;
 
       // If very close to boundary, prefer closed side.
       // 1e-8 =~ sqrt(.Machine$double.eps)
-      double bin = (x - origin_) / width_ + (right_closed_ ? -1e-8 : 1e-8);
+      double bin = (x - min_) / width_ + (right_closed_ ? -1e-8 : 1e-8);
       if (bin < 0)
         return 0;
 
@@ -70,7 +59,7 @@ class GroupFixed {
 private:
     double left_side(int bin) const {
       if (bin < 0) return(NA_REAL);
-      return (bin - 1 - (pad_ ? 1 : 0)) * width_ + origin_;
+      return (bin - 1 - (pad_ ? 1 : 0)) * width_ + min_;
     }
 };
 
@@ -89,9 +78,6 @@ class GroupVariable {
 
       // Ensure breaks are in ascending order
       std::sort(breaks.begin(), breaks.end());
-    }
-
-    void init(const Rcpp::DoubleVector& x) {
     }
 
     int bin(double x) const {
