@@ -7,6 +7,7 @@ List group_fixed(NumericVector x, double width, double origin = 0,
                               bool pad = false, bool right_closed = false) {
 
   GroupFixed grp(width, origin, pad, right_closed);
+  grp.init(x);
 
   int n = x.size();
   IntegerVector out(n);
@@ -17,6 +18,7 @@ List group_fixed(NumericVector x, double width, double origin = 0,
 
   return List::create(
     _["x"] = out,
+    _["nbins"] = grp.nbins(),
     _["bins"] = grp.outColumns()
   );
 }

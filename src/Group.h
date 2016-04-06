@@ -20,34 +20,33 @@ class GroupFixed {
     }
 
     void init(const Rcpp::DoubleVector& x) {
-      // Compute and cache maximum
       max_ = -INFINITY;
       int n = x.size();
 
       for(int i = 0; i < n; ++i) {
         if (x[i] == INFINITY) continue;
         // Normal FP ops ensure that NA and -Inf don't increase max
-        if (x[i] > max_) max_ = x[i];
+        if (x[i] > max_)
+          max_ = x[i];
       }
     }
 
     int bin(double x) const {
-      if (!R_finite(x)) return 0;
+      if (!R_finite(x))
+        return 0;
 
-      double x_adj = x;
       // If very close to boundary, prefer closed side.
       // 1e-8 =~ sqrt(.Machine$double.eps)
-      if (right_closed_) {
-        x_adj -= width_ * 1e-8;
-      } else {
-        x_adj += width_ * 1e-8;
-      }
+      double bin = (x - origin_) / width_ + (right_closed_ ? -1e-8 : 1e-8);
+      if (bin < 0)
+        return 0;
 
-      return (x_adj - origin_) / width_ + 1 + (pad_ ? 1 : 0);
+      return bin + 1;
     }
 
     int nbins() const {
-      return bin(max_) + 1 + (pad_ ? : 0);
+      // number of bins is 1 greater than largest bin
+      return bin(max_) + 1;
     }
 
     Rcpp::List outColumns() const {
@@ -72,6 +71,6 @@ class GroupFixed {
 private:
     double unbin(int bin) const {
       if (bin < 0) return(NA_REAL);
-      return (bin - 1 - (pad_ ? 1 : 0)) * width_ + origin_ + width_ / 2;
+      return (bin - 1) * width_ + origin_ + width_ / 2;
     }
 };

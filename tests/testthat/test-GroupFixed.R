@@ -5,9 +5,14 @@ test_that("throws error if width is <= 0", {
   expect_error(group_fixed(1:10, 0), "`width` must be positive")
 })
 
-test_that("NA goes in bin 0", {
-  out <- group_fixed(NA, 1)
-  expect_equal(out$x, 0L)
+test_that("non-finite values go bin 0", {
+  out <- group_fixed(c(NA, Inf, -Inf), 1)
+  expect_equal(out$x, c(0L, 0L, 0L))
+})
+
+test_that("values less than origin go in bin 0", {
+  out <- group_fixed(c(-1, -100), 1)
+  expect_equal(out$x, c(0L, 0L))
 })
 
 test_that("values smaller than origin go in bin 0", {
@@ -15,13 +20,22 @@ test_that("values smaller than origin go in bin 0", {
   expect_equal(out$x, 0L)
 })
 
+test_that("bin number as expected for middle of bin", {
+  # (0, 1], (1, 2], (2, 3]
+  out1 <- group_fixed(c(0.5, 1.5, 2.5), 1)
+  expect_equal(out1$x, c(1, 2, 3))
+  expect_equal(out1$nbins, 4)
+})
+
 test_that("respects right_closed", {
   # (0, 1], (1, 2]
   out1 <- group_fixed(c(2, 1), 1, right_closed = TRUE)
   expect_equal(out1$x, c(2, 1))
+  expect_equal(out1$nbins, 3)
 
   # [0, 1), [1, 2), [2, 3)
   out2 <- group_fixed(c(2, 1), 1, right_closed = FALSE)
+  expect_equal(out2$nbins, 4)
   expect_equal(out2$x, c(3, 2))
 })
 
