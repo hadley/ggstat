@@ -49,6 +49,10 @@ abs_max_ <- function(x, finite = TRUE) {
     .Call('ggstat_abs_max_', PACKAGE = 'ggstat', x, finite)
 }
 
+group_fixed <- function(x, width, origin = 0, pad = FALSE, right_closed = FALSE) {
+    .Call('ggstat_group_fixed', PACKAGE = 'ggstat', x, width, origin, pad, right_closed)
+}
+
 #' Modulus transformation (and its inverse).
 #'
 #' A generalisation of the box-cox transformation that works for

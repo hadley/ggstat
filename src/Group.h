@@ -15,7 +15,8 @@ class GroupFixed {
        : width_(width), origin_(origin), pad_(pad),
          right_closed_(right_closed) {
 
-      if (width <= 0) Rcpp::stop("Width must be positive");
+      if (width <= 0)
+        Rcpp::stop("`width` must be positive");
     }
 
     void init(const Rcpp::DoubleVector& x) {
@@ -45,27 +46,18 @@ class GroupFixed {
       return (x_adj - origin_) / width_ + 1 + (pad_ ? 1 : 0);
     }
 
-    double unbin(int bin) const {
-      if (bin == 0) return(NA_REAL);
-      return (bin - 1 - (pad_ ? 1 : 0)) * width_ + origin_ + width_ / 2;
-    }
-
     int nbins() const {
       return bin(max_) + 1 + (pad_ ? : 0);
-    }
-
-    double origin() const {
-      return origin_;
-    }
-
-    double width() const {
-      return width_;
     }
 
     Rcpp::List outColumns() const {
       int n = nbins();
       Rcpp::NumericVector xmin(n), xmax(n);
-      for (int i = 0; i < n; ++i) {
+
+      xmin[0] = NA_REAL;
+      xmax[0] = NA_REAL;
+
+      for (int i = 1; i < n; ++i) {
         double x = unbin(i);
         xmin[i] = x - width_ / 2;
         xmax[i] = x + width_ / 2;
@@ -75,5 +67,11 @@ class GroupFixed {
         Rcpp::_["xmin_"] = xmin,
         Rcpp::_["xmax_"] = xmax
       );
+    }
+
+private:
+    double unbin(int bin) const {
+      if (bin < 0) return(NA_REAL);
+      return (bin - 1 - (pad_ ? 1 : 0)) * width_ + origin_ + width_ / 2;
     }
 };

@@ -173,6 +173,21 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
+// group_fixed
+List group_fixed(NumericVector x, double width, double origin, bool pad, bool right_closed);
+RcppExport SEXP ggstat_group_fixed(SEXP xSEXP, SEXP widthSEXP, SEXP originSEXP, SEXP padSEXP, SEXP right_closedSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< double >::type width(widthSEXP);
+    Rcpp::traits::input_parameter< double >::type origin(originSEXP);
+    Rcpp::traits::input_parameter< bool >::type pad(padSEXP);
+    Rcpp::traits::input_parameter< bool >::type right_closed(right_closedSEXP);
+    __result = Rcpp::wrap(group_fixed(x, width, origin, pad, right_closed));
+    return __result;
+END_RCPP
+}
 // mt
 NumericVector mt(NumericVector x, double lambda);
 RcppExport SEXP ggstat_mt(SEXP xSEXP, SEXP lambdaSEXP) {
