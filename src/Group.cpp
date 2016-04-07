@@ -26,8 +26,8 @@ List group_fixed(NumericVector x, double width, double min, double max,
 }
 
 // [[Rcpp::export]]
-List group_variable(NumericVector x, std::vector<double> breaks,
+List group_breaks(NumericVector x, std::vector<double> breaks,
                     bool right_closed = false) {
-  GroupVariable grp(breaks, right_closed);
+  GroupBreaks grp(breaks, right_closed);
   return groupInfo(&grp, x);
 }

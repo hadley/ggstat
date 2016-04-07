@@ -21,9 +21,9 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
-// count_variable
-List count_variable(const NumericVector& x, const NumericVector& w, std::vector<double> breaks, bool right_closed);
-RcppExport SEXP ggstat_count_variable(SEXP xSEXP, SEXP wSEXP, SEXP breaksSEXP, SEXP right_closedSEXP) {
+// count_breaks
+List count_breaks(const NumericVector& x, const NumericVector& w, std::vector<double> breaks, bool right_closed);
+RcppExport SEXP ggstat_count_breaks(SEXP xSEXP, SEXP wSEXP, SEXP breaksSEXP, SEXP right_closedSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
@@ -31,7 +31,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const NumericVector& >::type w(wSEXP);
     Rcpp::traits::input_parameter< std::vector<double> >::type breaks(breaksSEXP);
     Rcpp::traits::input_parameter< bool >::type right_closed(right_closedSEXP);
-    __result = Rcpp::wrap(count_variable(x, w, breaks, right_closed));
+    __result = Rcpp::wrap(count_breaks(x, w, breaks, right_closed));
     return __result;
 END_RCPP
 }
@@ -202,16 +202,16 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
-// group_variable
-List group_variable(NumericVector x, std::vector<double> breaks, bool right_closed);
-RcppExport SEXP ggstat_group_variable(SEXP xSEXP, SEXP breaksSEXP, SEXP right_closedSEXP) {
+// group_breaks
+List group_breaks(NumericVector x, std::vector<double> breaks, bool right_closed);
+RcppExport SEXP ggstat_group_breaks(SEXP xSEXP, SEXP breaksSEXP, SEXP right_closedSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
     Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
     Rcpp::traits::input_parameter< std::vector<double> >::type breaks(breaksSEXP);
     Rcpp::traits::input_parameter< bool >::type right_closed(right_closedSEXP);
-    __result = Rcpp::wrap(group_variable(x, breaks, right_closed));
+    __result = Rcpp::wrap(group_breaks(x, breaks, right_closed));
     return __result;
 END_RCPP
 }

@@ -63,12 +63,12 @@ private:
 
 // -----------------------------------------------------------------------------
 
-class GroupVariable {
+class GroupBreaks {
     std::vector<double> breaks_;
     bool right_closed_;
 
   public:
-    GroupVariable(std::vector<double> breaks, bool right_closed = true)
+    GroupBreaks(std::vector<double> breaks, bool right_closed = true)
        : breaks_(breaks), right_closed_(right_closed) {
 
       if (breaks.size() < 1)
@@ -82,17 +82,20 @@ class GroupVariable {
       if (ISNAN(x))
         return 0;
 
+      if (x < breaks_[0] || x > breaks_[breaks_.size() - 1])
+        return 0;
+
       std::vector<double>::const_iterator it = (right_closed_) ?
         std::lower_bound(breaks_.begin(), breaks_.end(), x) :
         std::upper_bound(breaks_.begin(), breaks_.end(), x);
 
-      return (it - breaks_.begin()) + 1;
+      return (it - breaks_.begin());
     }
 
     int nbins() const {
-      // + 1 for NAs
-      // + 1 more interval than breaks
-      return breaks_.size() + 1 + 1;
+      // + 1 for NA bin
+      // - 1 less interval than breaks
+      return breaks_.size();
     }
 
     Rcpp::List outColumns(SEXP x) const {
@@ -103,8 +106,8 @@ class GroupVariable {
       xmax[0] = NA_REAL;
 
       for (int i = 1; i < n; ++i) {
-        xmin[i] = i == 1 ?       -INFINITY : breaks_[i - 2];
-        xmax[i] = i == (n - 1) ?  INFINITY : breaks_[i - 1];
+        xmin[i] = breaks_[i - 1];
+        xmax[i] = breaks_[i];
       }
 
       return Rcpp::List::create(

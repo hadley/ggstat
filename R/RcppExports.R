@@ -5,8 +5,8 @@ count_fixed <- function(x, w, min, max, width, right_closed) {
     .Call('ggstat_count_fixed', PACKAGE = 'ggstat', x, w, min, max, width, right_closed)
 }
 
-count_variable <- function(x, w, breaks, right_closed) {
-    .Call('ggstat_count_variable', PACKAGE = 'ggstat', x, w, breaks, right_closed)
+count_breaks <- function(x, w, breaks, right_closed) {
+    .Call('ggstat_count_breaks', PACKAGE = 'ggstat', x, w, breaks, right_closed)
 }
 
 condense_sum <- function(x, min, max, width, right_closed, z, w) {
@@ -57,8 +57,8 @@ group_fixed <- function(x, width, min, max, right_closed = FALSE) {
     .Call('ggstat_group_fixed', PACKAGE = 'ggstat', x, width, min, max, right_closed)
 }
 
-group_variable <- function(x, breaks, right_closed = FALSE) {
-    .Call('ggstat_group_variable', PACKAGE = 'ggstat', x, breaks, right_closed)
+group_breaks <- function(x, breaks, right_closed = FALSE) {
+    .Call('ggstat_group_breaks', PACKAGE = 'ggstat', x, breaks, right_closed)
 }
 
 #' Modulus transformation (and its inverse).
