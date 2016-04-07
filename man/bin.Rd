@@ -75,9 +75,9 @@ bin_fixed(origin = 0, terminus = 1, width = 0.25)
 bin_fixed(x, bins = 37)
 
 # Bin other types of object
-x1 <- Sys.time() + runif(10) * 60
-x2 <- Sys.Date() + sample(30, 10)
+x1 <- Sys.time() + runif(1000) * 60
 compute_stat(bin_date(x1), x1)
+x2 <- Sys.Date() + sample(30, 10)
 compute_stat(bin_date(x2), x2)
 
 # For fixed bin width, performance scales linearly with the size of x.
