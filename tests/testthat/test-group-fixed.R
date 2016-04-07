@@ -1,4 +1,4 @@
-context("GroupFixed")
+context("group_fixed")
 
 test_that("throws error if width is <= 0", {
   expect_error(group_fixed(1:10, -1, 0, 10), "`width` must be positive")

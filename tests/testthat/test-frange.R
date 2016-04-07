@@ -1,4 +1,4 @@
-context("frange()")
+context("frange")
 
 test_that("frange() of empty vector is Inf, -Inf", {
   expect_equal(frange(numeric()), c(Inf, -Inf))

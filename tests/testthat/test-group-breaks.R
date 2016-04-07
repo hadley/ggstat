@@ -1,4 +1,4 @@
-context("GroupVariable")
+context("group_breaks")
 
 test_that("throws error if not enough breaks", {
   expect_error(group_breaks(1:10, numeric()), "`breaks` must have at least one element")
