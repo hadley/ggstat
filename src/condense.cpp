@@ -43,13 +43,11 @@ List count_fixed(const NumericVector& x, const NumericVector& w,
 // [[Rcpp::export]]
 List count_breaks(const NumericVector& x, const NumericVector& w,
                   std::vector<double> breaks, bool right_closed) {
-  GroupBreaks grp(breaks);
+  GroupBreaks grp(breaks, right_closed);
   CondenseCount cnd;
 
   return condense(&grp, &cnd, x, NumericVector::create(), w);
 }
-
-
 
 // [[Rcpp::export]]
 List condense_sum(const NumericVector& x, double min, double max,

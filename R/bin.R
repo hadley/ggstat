@@ -147,7 +147,7 @@ bin_date <- function(x, bins = 30, closed = c("right", "left")) {
 
 #' @export
 compute_stat.bin_breaks <- function(params, x, y, z, w = NULL) {
-  count_variable(x,
+  count_breaks(x,
     w =            w %||% numeric(),
     breaks =       params$breaks,
     right_closed = params$right_closed
