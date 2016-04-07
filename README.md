@@ -22,5 +22,5 @@ You can install ggstat from github with:
 
 ```R
 # install.packages("devtools")
-devtools::install_github("ggstat/rstudio")
+devtools::install_github("hadley/ggstat")
 ```
