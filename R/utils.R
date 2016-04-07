@@ -1,6 +1,6 @@
 notify_guess <- function(x, explanation = NULL) {
   msg <- paste0(
-    "Guessing ", deparse(substitute(x)), " = ", format(x, digits = 3),
+    "Guessing `", deparse(substitute(x)), " = ", format(x, digits = 3), "`",
     if (!is.null(explanation)) paste0(" # ", explanation)
   )
   message(msg)
@@ -41,4 +41,11 @@ pluck <- function(x, name, type) {
   } else {
     vapply(x, "[[", name, FUN.VALUE = type)
   }
+}
+
+pretty_width <- function(x, n = 30) {
+  bounds <- pretty(x, n)
+  width <- bounds[2] - bounds[1]
+  notify_guess(width, paste0("range / ", length(bounds) - 1))
+  width
 }

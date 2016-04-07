@@ -9,3 +9,8 @@ void as_data_frame(List x, int nrow) {
       stop("List must have 'names' attribute set");
    }
 }
+
+SEXP restore_(SEXP old_, SEXP new_) {
+  Function restore("restore");
+  return restore(old_, new_);
+}

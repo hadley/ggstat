@@ -34,10 +34,12 @@ test_that("respects right_closed", {
   expect_equal(out2$x, c(3, 2))
 })
 
-test_that("pad = TRUE adds empty bin at start and end", {
-  out <- group_fixed(c(0.5, 1.5), 1, min = 0, max = 1.5, pad = TRUE)
-  expect_equal(out$nbins, 2 + 2 + 1)
-  expect_equal(out$bins$xmin_, c(NA, -1, 0, 1, 2))
+test_that("preserves class variables", {
+  x <- as.Date("2000-01-01") + 0:1
+  out <- group_fixed(x, 2, min = min(x), max = max(x))
+
+  expect_equal(out$bins$xmin_, as.Date(c(NA, "2000-01-01")))
+  expect_equal(out$bins$xmax_, as.Date(c(NA, "2000-01-03")))
 })
 
 # Floating point ----------------------------------------------------------

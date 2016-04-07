@@ -14,8 +14,8 @@ restore(old, new)
 }
 \description{
 When an S3 class is built on top of an atomic vector, it's often resonable
-to do some computation on the underlying atomic vector. This generic allows
-you to restore important attributes from the original vector to the new
+compute directly on those underlying values. This generic allows you to
+restore important attributes from the original vector to the new
 vector, so that it continues to behave as expected.
 }
 \examples{

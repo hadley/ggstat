@@ -21,7 +21,7 @@ List condense(Group* pGroup,
     pCondenser->push(bin, has_z ? z[i] : 1, has_w ? w[i] : 1);
   }
 
-  List grpCols = pGroup->outColumns(), outCols = pCondenser->outColumns();
+  List grpCols = pGroup->outColumns(x), outCols = pCondenser->outColumns();
 
   int p = grpCols.size() + outCols.size();
   List both(p);
@@ -47,20 +47,31 @@ List condense(Group* pGroup,
 }
 
 // [[Rcpp::export]]
-List condense_count(const NumericVector& x, double min, double max,
-                    double width, bool pad, bool right_closed,
-                    const NumericVector& w) {
-  GroupFixed grp(width, min, max, pad, right_closed);
+List count_fixed(const NumericVector& x, const NumericVector& w,
+                 double min, double max,
+                 double width, bool right_closed) {
+  GroupFixed grp(width, min, max, right_closed);
   CondenseCount cnd;
 
   return condense(&grp, &cnd, x, NumericVector::create(), w);
 }
 
 // [[Rcpp::export]]
+List count_variable(const NumericVector& x, const NumericVector& w,
+                   std::vector<double> breaks, bool right_closed) {
+  GroupVariable grp(breaks);
+  CondenseCount cnd;
+
+  return condense(&grp, &cnd, x, NumericVector::create(), w);
+}
+
+
+
+// [[Rcpp::export]]
 List condense_sum(const NumericVector& x, double min, double max,
-                  double width, bool pad, bool right_closed,
+                  double width, bool right_closed,
                   const NumericVector& z, const NumericVector& w) {
-  GroupFixed grp(width, min, max, pad, right_closed);
+  GroupFixed grp(width, min, max, right_closed);
   CondenseSum cnd;
 
   return condense(&grp, &cnd, x, z, w);
@@ -68,9 +79,9 @@ List condense_sum(const NumericVector& x, double min, double max,
 
 // [[Rcpp::export]]
 List condense_moments(const NumericVector& x, double min, double max,
-                      double width, bool pad, bool right_closed,
+                      double width, bool right_closed,
                       const NumericVector& z, const NumericVector& w) {
-  GroupFixed grp(width, min, max, pad, right_closed);
+  GroupFixed grp(width, min, max, right_closed);
   CondenseMoments cnd;
 
   return condense(&grp, &cnd, x, z, w);
@@ -78,9 +89,9 @@ List condense_moments(const NumericVector& x, double min, double max,
 
 // [[Rcpp::export]]
 List condense_median(const NumericVector& x, double min, double max,
-                     double width, bool pad, bool right_closed,
+                     double width, bool right_closed,
                      const NumericVector& z, const NumericVector& w) {
-  GroupFixed grp(width, min, max, pad, right_closed);
+  GroupFixed grp(width, min, max, right_closed);
   CondenseMedian cnd;
 
   return condense(&grp, &cnd, x, z, w);

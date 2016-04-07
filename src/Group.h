@@ -1,15 +1,15 @@
 #include <Rcpp.h>
+SEXP restore_(SEXP old_, SEXP new_);
 
 class GroupFixed {
     double width_;
     double min_, max_;
-    bool pad_;
     bool right_closed_;
 
   public:
     GroupFixed(double width, double min, double max,
-               bool pad = false, bool right_closed = true)
-       : width_(width), min_(min), max_(max), pad_(pad),
+               bool right_closed = true)
+       : width_(width), min_(min), max_(max),
          right_closed_(right_closed) {
 
       if (width <= 0)
@@ -28,17 +28,15 @@ class GroupFixed {
       if (bin < 0)
         return 0;
 
-      return bin + 1 + (pad_ ? 1 : 0);
+      return bin + 1;
     }
 
     int nbins() const {
-      // number of bins is largest bin
-      // + 1 for bin zero
-      // + 1 for empty padding bin on right
-      return bin(max_) + 1 + (pad_ ? 1 : 0);
+      // number of bins is largest bin + 1 for NA bin
+      return bin(max_) + 1;
     }
 
-    Rcpp::List outColumns() const {
+    Rcpp::List outColumns(SEXP x) const {
       int n = nbins();
       Rcpp::NumericVector xmin(n), xmax(n);
 
@@ -51,15 +49,15 @@ class GroupFixed {
       }
 
       return Rcpp::List::create(
-        Rcpp::_["xmin_"] = xmin,
-        Rcpp::_["xmax_"] = xmax
+        Rcpp::_["xmin_"] = restore_(x, xmin),
+        Rcpp::_["xmax_"] = restore_(x, xmax)
       );
     }
 
 private:
     double left_side(int bin) const {
       if (bin < 0) return(NA_REAL);
-      return (bin - 1 - (pad_ ? 1 : 0)) * width_ + min_;
+      return (bin - 1) * width_ + min_;
     }
 };
 
@@ -97,7 +95,7 @@ class GroupVariable {
       return breaks_.size() + 1 + 1;
     }
 
-    Rcpp::List outColumns() const {
+    Rcpp::List outColumns(SEXP x) const {
       int n = nbins();
       Rcpp::NumericVector xmin(n), xmax(n);
 
@@ -110,8 +108,8 @@ class GroupVariable {
       }
 
       return Rcpp::List::create(
-        Rcpp::_["xmin_"] = xmin,
-        Rcpp::_["xmax_"] = xmax
+        Rcpp::_["xmin_"] = restore_(x, xmin),
+        Rcpp::_["xmax_"] = restore_(x, xmax)
       );
     }
 };

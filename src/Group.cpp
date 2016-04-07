@@ -14,14 +14,14 @@ List groupInfo(Group* pGroup, NumericVector x) {
   return List::create(
     _["x"] = out,
     _["nbins"] = pGroup->nbins(),
-    _["bins"] = pGroup->outColumns()
+    _["bins"] = pGroup->outColumns(x)
   );
 }
 
 // [[Rcpp::export]]
 List group_fixed(NumericVector x, double width, double min, double max,
-                 bool pad = false, bool right_closed = false) {
-  GroupFixed grp(width, min, max, pad, right_closed);
+                 bool right_closed = false) {
+  GroupFixed grp(width, min, max, right_closed);
   return groupInfo(&grp, x);
 }
 
