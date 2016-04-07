@@ -3,6 +3,8 @@
 #include "Condense.h"
 using namespace Rcpp;
 
+List makeDf(const List& x, const List& y, int n);
+
 template<typename Group, typename Condenser>
 List condense(Group* pGroup,
               Condenser* pCondenser,
@@ -21,29 +23,11 @@ List condense(Group* pGroup,
     pCondenser->push(bin, has_z ? z[i] : 1, has_w ? w[i] : 1);
   }
 
-  List grpCols = pGroup->outColumns(x), outCols = pCondenser->outColumns();
-
-  int p = grpCols.size() + outCols.size();
-  List both(p);
-  CharacterVector
-    grpNames = grpCols.attr("names"),
-    outNames = outCols.attr("names"),
-    bothNames(p);
-
-  for (int i = 0; i < grpCols.size(); ++i) {
-    both[i] = grpCols[i];
-    bothNames[i] = grpNames[i];
-  }
-  for (int i = 0; i < outCols.size(); ++i) {
-    both[i + grpCols.size()] = outCols[i];
-    bothNames[i + grpCols.size()] = outNames[i];
-  }
-
-  both.attr("names") = bothNames;
-  both.attr("class") = CharacterVector::create("tbl_df", "tbl", "data.frame");
-  both.attr("row.names") = IntegerVector::create(NA_INTEGER, -pGroup->nbins());
-
-  return both;
+  return makeDf(
+    pGroup->outColumns(x),
+    pCondenser->outColumns(),
+    pGroup->nbins()
+  );
 }
 
 // [[Rcpp::export]]
