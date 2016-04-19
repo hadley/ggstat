@@ -4,10 +4,10 @@
 #'    this packagea
 #' @param x X position. This is required by all stats. \code{y}, \code{z},
 #'    and \code{w} should always be the same length as \code{x}.
-#' @param y Y position. This is required by all 2d stats.
-#' @param z Z value. This is required by all stats that compute a summary.
+#' @param ... Additional arguments passed on to stat. Many stats take
+#'    \code{y} and \code{z} values.
 #' @param w Weights. Optional vector of weights.
 #' @export
-compute_stat <- function(params, x, y, z, w = NULL) {
+compute_stat <- function(params, x, ..., w = NULL) {
   UseMethod("compute_stat")
 }

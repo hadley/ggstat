@@ -116,7 +116,8 @@ bin_fixed <- function(x, width = NULL, center = NULL, boundary = NULL,
 }
 
 #' @export
-compute_stat.bin_fixed <- function(params, x, y, z, w = NULL) {
+#' @rdname compute_stat
+compute_stat.bin_fixed <- function(params, x, ..., w = NULL) {
   count_fixed(x,
     w =            w %||% numeric(),
     min =          params$range[1],
@@ -146,7 +147,8 @@ bin_date <- function(x, bins = 30, closed = c("right", "left")) {
 }
 
 #' @export
-compute_stat.bin_breaks <- function(params, x, y, z, w = NULL) {
+#' @rdname compute_stat
+compute_stat.bin_breaks <- function(params, x, ..., w = NULL) {
   count_breaks(x,
     w =            w %||% numeric(),
     breaks =       params$breaks,
