@@ -1,4 +1,4 @@
-#' Bin a continuous vector.
+#' Bin in 1d
 #'
 #' Bin a numeric vector and count how many observations fall in each bin.
 #' Supports weights so that you can re-bin pre-binned data.
@@ -98,6 +98,7 @@ bin_fixed <- function(x, width = NULL, center = NULL, boundary = NULL,
     if (!is.numeric(origin) || length(origin) != 1) {
       stop("`origin` must be a single number.")
     }
+    range[1] <- origin
   }
 
   # To pad, extend range one bin past min and max

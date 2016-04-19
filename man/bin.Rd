@@ -5,7 +5,7 @@
 \alias{bin_breaks}
 \alias{bin_date}
 \alias{bin_fixed}
-\title{Bin a continuous vector.}
+\title{Bin in 1d}
 \usage{
 bin_fixed(x, width = NULL, center = NULL, boundary = NULL,
   origin = NULL, terminus = NULL, bins = 30, pad = FALSE,
