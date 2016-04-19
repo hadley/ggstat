@@ -116,6 +116,17 @@ bin_fixed <- function(x, width = NULL, center = NULL, boundary = NULL,
 }
 
 #' @export
+print.bin_fixed <- function(x, ...) {
+  cat("<bin_fixed>")
+  cat(" ", format(x$range[1], digits = 3), "\u2014", format(x$range[2], digits = 3),
+    sep = "")
+  cat(" \u2022 ", format(x$width, digits = 3), sep = "")
+  cat(" \u2022 ", if (x$right_closed) "(]" else "[)", sep = "")
+  cat("\n")
+
+}
+
+#' @export
 #' @rdname compute_stat
 compute_stat.bin_fixed <- function(params, x, ..., w = NULL) {
   count_fixed(x,

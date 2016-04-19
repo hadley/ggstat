@@ -2,7 +2,9 @@
 
 S3method(compute_stat,bin_breaks)
 S3method(compute_stat,bin_fixed)
+S3method(print,bin_fixed)
 S3method(restore,default)
+export(bin_2d_fixed)
 export(bin_breaks)
 export(bin_date)
 export(bin_fixed)
