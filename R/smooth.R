@@ -2,8 +2,7 @@
 #'
 #' This method is analogous to \code{\link{loess}} but it first finely bins the
 #' data. This yields a substantially performance improvement (<1s for 10m
-#' points), while adding on worsening performance slightly (and typically the
-#' error will be less than 1 pixel).
+#' points), while only worsening performance slightly.
 #'
 #' @param x,z Numeric vectors.
 #' @param span Fraction of data that should be used by the smoother. Will
