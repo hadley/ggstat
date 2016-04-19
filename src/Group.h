@@ -54,7 +54,6 @@ class GroupFixed {
       );
     }
 
-private:
     double left_side(int bin) const {
       if (bin < 0) return(NA_REAL);
       return (bin - 1) * width_ + min_;

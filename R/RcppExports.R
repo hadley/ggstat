@@ -21,6 +21,10 @@ condense_median <- function(x, min, max, width, right_closed, z, w) {
     .Call('ggstat_condense_median', PACKAGE = 'ggstat', x, min, max, width, right_closed, z, w)
 }
 
+count_2d_fixed <- function(x, y, w, min_x, min_y, max_x, max_y, width_x, width_y, right_closed_x, right_closed_y) {
+    .Call('ggstat_count_2d_fixed', PACKAGE = 'ggstat', x, y, w, min_x, min_y, max_x, max_y, width_x, width_y, right_closed_x, right_closed_y)
+}
+
 count_lgl <- function(x, w) {
     .Call('ggstat_count_lgl', PACKAGE = 'ggstat', x, w)
 }

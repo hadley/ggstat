@@ -86,6 +86,27 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
+// count_2d_fixed
+List count_2d_fixed(const NumericVector& x, const NumericVector& y, const NumericVector& w, double min_x, double min_y, double max_x, double max_y, double width_x, double width_y, bool right_closed_x, bool right_closed_y);
+RcppExport SEXP ggstat_count_2d_fixed(SEXP xSEXP, SEXP ySEXP, SEXP wSEXP, SEXP min_xSEXP, SEXP min_ySEXP, SEXP max_xSEXP, SEXP max_ySEXP, SEXP width_xSEXP, SEXP width_ySEXP, SEXP right_closed_xSEXP, SEXP right_closed_ySEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< const NumericVector& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type y(ySEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type w(wSEXP);
+    Rcpp::traits::input_parameter< double >::type min_x(min_xSEXP);
+    Rcpp::traits::input_parameter< double >::type min_y(min_ySEXP);
+    Rcpp::traits::input_parameter< double >::type max_x(max_xSEXP);
+    Rcpp::traits::input_parameter< double >::type max_y(max_ySEXP);
+    Rcpp::traits::input_parameter< double >::type width_x(width_xSEXP);
+    Rcpp::traits::input_parameter< double >::type width_y(width_ySEXP);
+    Rcpp::traits::input_parameter< bool >::type right_closed_x(right_closed_xSEXP);
+    Rcpp::traits::input_parameter< bool >::type right_closed_y(right_closed_ySEXP);
+    __result = Rcpp::wrap(count_2d_fixed(x, y, w, min_x, min_y, max_x, max_y, width_x, width_y, right_closed_x, right_closed_y));
+    return __result;
+END_RCPP
+}
 // count_lgl
 List count_lgl(LogicalVector x, NumericVector w);
 RcppExport SEXP ggstat_count_lgl(SEXP xSEXP, SEXP wSEXP) {

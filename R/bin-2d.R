@@ -11,6 +11,12 @@
 #' bin_2d_fixed(runif(100), runif(100), origin = 0)
 #' bin_2d_fixed(runif(100), runif(100), width = 0.25)
 #' bin_2d_fixed(runif(100), runif(100), bins = c(10, 100))
+#'
+#' x <- runif(1e6)
+#' y <- runif(1e6)
+#' bins <- bin_2d_fixed(x, y)
+#' compute_stat(bins, x, y)
+#'
 bin_2d_fixed <- function(x, y,
                          width = NULL, center = NULL, boundary = NULL,
                          origin = NULL, terminus = NULL, bins = 30, pad = FALSE,
@@ -55,6 +61,23 @@ bin_2d_fixed <- function(x, y,
     class = "bin_2d_fixed"
   )
 }
+
+#' @export
+#' @rdname compute_stat
+compute_stat.bin_2d_fixed <- function(params, x, y, ..., w = NULL) {
+  count_2d_fixed(x, y,
+    w =              w %||% numeric(),
+    min_x =          params$x$range[1],
+    min_y =          params$y$range[1],
+    max_x =          params$x$range[2],
+    max_y =          params$y$range[2],
+    width_x =        params$x$width,
+    width_y =        params$y$width,
+    right_closed_x = params$x$right_closed,
+    right_closed_y = params$y$right_closed
+  )
+}
+
 
 dual_arg <- function(x) {
   if (is.null(x)) {
