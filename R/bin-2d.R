@@ -22,6 +22,7 @@ bin_2d_fixed <- function(x, y,
 
   width <- dual_arg(width)
   center <- dual_arg(center)
+  boundary <- dual_arg(boundary)
   origin <- dual_arg(origin)
   terminus <- dual_arg(terminus)
   bins <- dual_arg(bins)
