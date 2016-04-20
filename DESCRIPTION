@@ -5,6 +5,7 @@ Description: A variety of high-performance calculations useful for
 Version: 0.0.0.9000
 Authors@R: c(
     person("Hadley", "Wickham", , "hadley@rstudio.com", c("aut", "cre")),
+    person("Mike", "Bostock", role = "ctb", comment = "Original hex bin code"),
     person("RStudio", role = "cph")
     )
 Depends:

@@ -1,5 +1,6 @@
 #include <Rcpp.h>
 #include "Group-2d.h"
+#include "GroupHex.h"
 #include "Condense.h"
 using namespace Rcpp;
 
@@ -45,5 +46,18 @@ List count_2d_fixed(const NumericVector& x,
   Group2d<GroupFixed> grp(&groupX, &groupY);
 
   CondenseCount cnd;
+  return condense_2d(&grp, &cnd, x, y, NumericVector::create(), w);
+}
+
+// [[Rcpp::export]]
+List count_2d_hex(const NumericVector& x,
+                  const NumericVector& y,
+                  const NumericVector& w,
+                  double min_x, double min_y,
+                  double max_x, double max_y,
+                  double width_x, double width_y) {
+  GroupHex grp(width_x, width_y, min_x, min_y, max_x, max_y);
+  CondenseCount cnd;
+
   return condense_2d(&grp, &cnd, x, y, NumericVector::create(), w);
 }

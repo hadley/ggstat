@@ -57,3 +57,8 @@ pretty_width <- function(x, n = 30) {
   notify_guess(width, paste0("range / ", length(bounds) - 1))
   width
 }
+
+rescale01 <- function(x) {
+  rng <- frange(x)
+  (x - rng[1]) / (rng[2] - rng[1])
+}

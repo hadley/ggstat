@@ -1,5 +1,24 @@
+#ifndef __GGSTAT_GROUP1D__
+#define __GGSTAT_GROUP1D__
+
 #include <Rcpp.h>
 SEXP restore_(SEXP old_, SEXP new_);
+
+inline double findBin(double x, double width, double min, double max,
+                      bool right_closed = true) {
+  if (!R_finite(x))
+    return 0;
+  if (x > max)
+    return 0;
+
+  // If very close to boundary, prefer closed side.
+  // 1e-8 =~ sqrt(.Machine$double.eps)
+  double bin = (x - min) / width + (right_closed ? -1e-8 : 1e-8);
+  if (bin < 0)
+    return 0;
+
+  return bin + 1;
+}
 
 class GroupFixed {
     double width_;
@@ -17,18 +36,7 @@ class GroupFixed {
     }
 
     int bin(double x) const {
-      if (!R_finite(x))
-        return 0;
-      if (x > max_)
-        return 0;
-
-      // If very close to boundary, prefer closed side.
-      // 1e-8 =~ sqrt(.Machine$double.eps)
-      double bin = (x - min_) / width_ + (right_closed_ ? -1e-8 : 1e-8);
-      if (bin < 0)
-        return 0;
-
-      return bin + 1;
+      return findBin(x, width_, min_, max_, right_closed_);
     }
 
     int nbins() const {
@@ -115,3 +123,5 @@ class GroupBreaks {
       );
     }
 };
+
+#endif
