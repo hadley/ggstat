@@ -67,5 +67,9 @@ bin_2d_fixed(runif(100), runif(100))
 bin_2d_fixed(runif(100), runif(100), origin = 0)
 bin_2d_fixed(runif(100), runif(100), width = 0.25)
 bin_2d_fixed(runif(100), runif(100), bins = c(10, 100))
+
+mat <- MASS::mvrnorm(1e6, mu = c(0, 0), matrix(c(1,0.5,0.5,1),2,2))
+bins <- bin_2d_fixed(c(-3, 3), c(-3, 3))
+system.time(out <- compute_stat(bins, mat[, 1], mat[, 2]))
 }
 
