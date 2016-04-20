@@ -25,7 +25,7 @@ List makeDf(const List& x, const List& y, int n) {
 
   for (int i = 0; i < x.size(); ++i) {
     if (Rf_length(x[i]) != n)
-      stop("Invalid length x col %i", i + 1);
+      stop("Invalid length x col %i (%i instead of %i)", i + 1, Rf_length(x[i]), n);
     both[i] = x[i];
     bothNames[i] = xNames[i];
   }
