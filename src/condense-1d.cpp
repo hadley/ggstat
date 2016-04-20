@@ -1,5 +1,5 @@
 #include <Rcpp.h>
-#include "Group.h"
+#include "Group-1d.h"
 #include "Condense.h"
 using namespace Rcpp;
 
