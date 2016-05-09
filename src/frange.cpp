@@ -48,7 +48,7 @@ double abs_max_(const NumericVector& x, const bool finite = true) {
   for(int i = 0; i < n; ++i) {
     double xi = x[i];
     if (!finite) {
-      if (isnan(xi)) return NA_REAL;
+      if (ISNAN(xi)) return NA_REAL;
       if (xi == INFINITY) return INFINITY;
       if (xi == -INFINITY) return INFINITY;
     }
